@@ -1,0 +1,6 @@
+<form method="post">
+    {% csrf_token %}
+    {{ countryform.as_table }}
+    {{ stateform.as_table }}
+    <button type="submit" class="button">Submit</button>
+</form>

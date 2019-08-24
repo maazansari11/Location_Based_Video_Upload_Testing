@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  body {
+   margin:0;
+   padding:0;
+  }
+
+</style>
+<table>
+    <thead>
+    <tr>
+        <td>Country</td>
+        <td>State</td>
+        <td>City</td>
+        <td>Area</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for lc in locations %}
+
+    <tr id="row_{{lc.id}}">
+        <td id="col1" width="20%">
+            <div><a href="{% url 'location' online_offline_video lc.domain_type_id %}">
+                <button class="btn-responsive" style="background-color:brown;color:white;">
+                    {{lc.area.city.state.country}}
+                </button>
+            </a></div>
+        </td>
+        <td id="col2" width="20%">
+            <div>
+                {{lc.area.city.state}}
+            </div>
+        </td>
+        <td id="col3" width="20%">
+            <div>
+                {{lc.area.city}}
+            </div>
+        </td>
+        <td id="col4" width="20%">
+            <div>
+                {{lc.area}}
+            </div>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

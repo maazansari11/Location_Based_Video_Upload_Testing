@@ -1,0 +1,6 @@
+<select>
+    <option value="">--SELECT CITY--</option>
+    {% for city in cities %}
+    <option value="{{ city.city_id }}">{{ city.city }}</option>
+    {% endfor %}
+</select>

@@ -1,0 +1,27 @@
+{% extends 'location.html'%}
+
+{% block div %}
+<div class="container">
+    <table>
+        <thead>
+        {% block country_dropdown%} {% end block %}
+        </thead>
+        <tbody>
+        {% for lc in location_country %}
+        <tr id="row_{{lc.id}}">
+            <td id="col1" width="100%">
+
+                <div><a href="{% url 'poc4' lc.video_type_id lc.domain_type_id lc.country_id %}">
+                    <button class="btn-responsive" style="background-color:brown;color:white;">
+                        {{lc.state}}
+                    </button>
+                </a></div>
+
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+{% endblock %}

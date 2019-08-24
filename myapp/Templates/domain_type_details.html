@@ -1,0 +1,86 @@
+{% extends 'domain_type.html'%}
+
+{% block div %}
+<style>
+  body {
+   margin:0;
+   padding:0;
+  }
+</style>
+<div class="container">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"
+            integrity="sha384-XxcvoeNF5V0ZfksTnV+bejnCsJjOOIzN6UVwF85WBsAnU3zeYh5bloN+L4WLgeNE"
+            crossorigin="anonymous"></script>
+    <script>
+     window.onload = function() {
+     var onoff = "{{ online_offline_video_id }}", domain = "{{ domain_type_id }}";
+     var height = "500px";
+     var width = "100%";
+     if (onoff != 0 && domain != 0){
+     document.getElementById("iframe_location_filter_table").src = domain+"/location";
+     document.getElementById("iframe_location_filter_table").width = width;
+     document.getElementById("iframe_location_filter_table").height = height;
+     }
+}
+
+    function handleSelectChange(event) {
+    var selectElement = event.target;
+    var value = selectElement.value;
+    var onoff = "{{ online_offline_video_id }}", domain = "{{ domain_type_id }}", country = value;
+    var height = "50px";
+    var width = "150px";
+    if(selectElement.id == "countries_dropdown"){
+        document.getElementById("iframe_load_states_dropdown").height ="0px";
+        document.getElementById("iframe_load_states_dropdown").width ="0px";
+        document.getElementById("iframe_load_states_dropdown").contentWindow.location.reload();
+
+        document.getElementById("iframe_load_states_dropdown").src = "/load_states/"+domain+"/"+country;
+        document.getElementById("iframe_load_states_dropdown").width = width;
+        document.getElementById("iframe_load_states_dropdown").height = height;
+
+        var location_height = "500px";
+        var location_width = "100%";
+         if (onoff != 0 && domain != 0){
+         document.getElementById("iframe_location_filter_table").src = domain+"/location/"+country;
+         document.getElementById("iframe_location_filter_table").width = location_width;
+         document.getElementById("iframe_location_filter_table").height = location_height;
+         }
+
+
+    }
+}
+
+    </script>
+    <table>
+        <thead>
+        <tr>
+            <td>
+                {% csrf_token %}
+                <select id="countries_dropdown" onchange="handleSelectChange(event)">
+                    <option value="">Select Countries</option>
+                    {% for country in country_list %}
+                    <option value="{{country.country_id}}">{{ country.country }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+            <td>
+                <!--        for state-->
+                <iframe width="0px" height="0px" id="iframe_load_states_dropdown" src="" frameborder="0"></iframe>
+
+            </td>
+            <td>
+                <!--        for cities-->
+                <iframe width="0px" height="0px" id="iframe_load_cities_dropdown" src="" frameborder="0"></iframe>
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan="100%">
+                <iframe width="100%" id="iframe_location_filter_table" src="{{ domain_type_id }}/location"></iframe>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div>Top level </div>
+<div>
+<table class="btn-responsive" >
+    <thead>
+	</thead>
+	<tbody>
+    <td style="width:30%;height:auto;">
+    {% for o in onofftoggle %}
+    <div style="background-color:brown;border:1px solid red">
+    <a href="{% url 'video_type_details' o.id %}" target="iframe_online_offline_video" id=video_type_"{{o.id}}"
+    style="background-color:brown;color:white" class="w3-btn w3-block w3-red w3-left-align">
+    {{o.video_type}}
+    </a>
+    </div>
+        {% endfor %}
+    </td>
+    <td cellIndex="0" id="frame_cell_1" style="width:70%;height:auto;" colspan="200">
+
+    {% block div %}{% endblock %}
+    </td>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td id="col1">
+
+        <td id="col2">
+        <table id="table2"><div> </div>
+            <tr >
+
+            </tr>
+        </table>
+        </td>
+    </tr>
+    </tfoot>
+</table>
+</div>
+{% endblock %}

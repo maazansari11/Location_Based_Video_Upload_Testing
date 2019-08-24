@@ -1,0 +1,27 @@
+{% extends 'video_type.html'%}
+
+{% block div %}
+<div class="container">
+    <table>
+        <thead>
+
+        </thead>
+        <tbody>
+        {% for d in domain_type %}
+        <tr id="row_{{d.id}}">
+            <td id="col1" width="100%">
+
+                <div><a href="{% url  'domain_type' d.video_type_id %}">
+                    <button class="btn-responsive" style="background-color:brown;color:white;">
+                        {{d.description}}
+                    </button>
+                </a></div>
+
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+{% endblock %}

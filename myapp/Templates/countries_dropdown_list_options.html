@@ -1,0 +1,12 @@
+{% extends 'domain_type_details.html' %}
+{% block class %}
+<div>
+    <select id="countries_dropdown">
+        <option value="">Select Countries</option>
+        {% for country in country_list %}
+        <option value="{{ country.country_id }}">{{ country.country }}</option>
+        {% endfor %}
+
+    </select>
+</div>
+{% endblock %}
